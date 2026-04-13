@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SmartPhotoCrafter: Unified Reasoning, Generation and Optimization for Automatic Photographic Image Editing.">
+  <meta name="keywords" content="Video World Model, Diffusion Transformer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartPhotoCrafter: Unified Reasoning, Generation and Optimization for Automatic Photographic Image Editing</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/tryon/tryon_icon_2.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+  
+            <!-- Logo -->
+            <img 
+              src="./static/images/model/logo.png"
+              style="height: 180px; transition: transform 0.3s;"
+              onmouseover="this.style.transform='scale(1.05)'"
+              onmouseout="this.style.transform='scale(1)'"
+            >
+  
+            <!-- Title -->
+            <h1 class="title is-1 publication-title gradient-text">
+              SmartPhotoCrafter: Unified Reasoning, Generation and Optimization 
+              for Automatic Photographic Image Editing
+            </h1>
+  
+            <!-- Gradient Style -->
+            <style>
+              .gradient-text {
+                background: linear-gradient(90deg, #4A90E2, #9B59B6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 800;
+              }
+            </style>
+  
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="">Ying Zeng</a>,</span>
+              <span class="author-block"><a href="">Miaosen Luo</a>,</span>
+              <span class="author-block"><a href="">Guanyuan Li</a>,</span>
+              <span class="author-block"><a href="">Yang Yang</a>,</span>
+              <span class="author-block"><a href="">Ruiyang Fan</a>,</span>
+              <span class="author-block"><a href="">Linxiao Shi</a>,</span>
+              <span class="author-block"><a href="">Qirui Yang</a>,</span>
+              <span class="author-block"><a href="">Chengcheng Liu</a></span>
+              <span class="author-block"><a href="">Siming Zheng</a>,</span>
+              <span class="author-block"><a href="">Jinwei Chen</a>,</span>
+              <span class="author-block"><a href="">Bo Li</a>,</span>
+              <span class="author-block">
+                <a href="">Peng-Tao Jiang</a><sup>*</sup>
+              </span>
+            </div>
+  
+            <!-- Affiliation -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                vivo BlueImage Lab, vivo Mobile Communication Co., Ltd.
+              </span>
+              <br>
+              <span class="author-block">
+                <sup>* Corresponding authors</sup>
+              </span>
+            </div>
+  
+            <!-- Links -->
+            <div class="column has-text-centered">
+              <div class="publication-links">
+  
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+  
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+  
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section comparison-section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Gallery</h2>
+  
+      <div class="comparison-grid">
+        <!-- 1 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/1_input.jpg" alt="original 1">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/1.jpg" alt="enhanced 1">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 2 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/2_input.jpg" alt="original 2">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/2.jpg" alt="enhanced 2">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 3 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/3_input.jpg" alt="original 3">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/3.jpg" alt="enhanced 3">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 4 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/4_input.jpg" alt="original 4">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/4.jpg" alt="enhanced 4">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 5 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/5_input.jpg" alt="original 5">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/5.jpg" alt="enhanced 5">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 6 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/6_input.jpg" alt="original 6">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/6.jpg" alt="enhanced 6">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 7 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/7_input.jpg" alt="original 7">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/7.jpg" alt="enhanced 7">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 8 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/8_input.jpg" alt="original 8">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/8.jpg" alt="enhanced 8">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 9 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/9_input.jpg" alt="original 9">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/9.jpg" alt="enhanced 9">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 10 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/10_input.jpg" alt="original 10">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/10.jpg" alt="enhanced 10">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 11 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/11_input.jpg" alt="original 11">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/11.jpg" alt="enhanced 11">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- 12 -->
+        <div class="comparison-card">
+          <div class="comparison-slider" data-start="50" style="--split: 50%;">
+            <img class="compare-img compare-original" src="./static/images/gallery/12_input.jpg" alt="original 12">
+            <img class="compare-img compare-enhanced" src="./static/images/gallery/12.jpg" alt="enhanced 12">
+            <div class="slider-divider" style="left: 50%;">
+              <div class="slider-handle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .comparison-section {
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+  
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 24px;
+    }
+  
+    .comparison-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+    }
+  
+    .comparison-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      user-select: none;
+      cursor: ew-resize;
+      background: #f3f3f3;
+      --split: 50%;
+    }
+  
+    .compare-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+  
+    /* 左边显示 Original */
+    .compare-original {
+      z-index: 1;
+      clip-path: inset(0 calc(100% - var(--split)) 0 0);
+    }
+  
+    /* 右边显示 Enhanced */
+    .compare-enhanced {
+      z-index: 2;
+      clip-path: inset(0 0 0 var(--split));
+    }
+  
+    .slider-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+  
+    .slider-divider::before {
+      content: "";
+      position: absolute;
+      left: -1.5px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+  
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+  
+    .slider-handle::before,
+    .slider-handle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+  
+    .slider-handle::before {
+      left: 8px;
+      border-right: 6px solid #666;
+    }
+  
+    .slider-handle::after {
+      right: 8px;
+      border-left: 6px solid #666;
+    }
+  
+    .comparison-slider::before,
+    .comparison-slider::after {
+      position: absolute;
+      top: 12px;
+      z-index: 4;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      color: #333;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+  
+    .comparison-slider::before {
+      content: "Original";
+      left: 12px;
+    }
+  
+    .comparison-slider::after {
+      content: "Enhanced";
+      right: 12px;
+    }
+  
+    @media screen and (max-width: 1024px) {
+      .comparison-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    @media screen and (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  
+  <script>
+    document.querySelectorAll('.comparison-slider').forEach((slider) => {
+      const divider = slider.querySelector('.slider-divider');
+      let isDragging = false;
+  
+      const setPosition = (clientX) => {
+        const rect = slider.getBoundingClientRect();
+        let x = clientX - rect.left;
+        let percent = (x / rect.width) * 100;
+        percent = Math.max(0, Math.min(100, percent));
+  
+        slider.style.setProperty('--split', percent + '%');
+        divider.style.left = percent + '%';
+      };
+  
+      slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        setPosition(e.clientX);
+      });
+  
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        setPosition(e.clientX);
+      });
+  
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+  
+      slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        setPosition(e.touches[0].clientX);
+      }, { passive: true });
+  
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        setPosition(e.touches[0].clientX);
+      }, { passive: true });
+  
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+  
+      const start = slider.dataset.start || 50;
+      slider.style.setProperty('--split', start + '%');
+      divider.style.left = start + '%';
+    });
+  </script>
+
+<section class="section">
+<div class="columns is-centered">
+  <div class="column is-8 has-text-centered">
+    <h2 class="title is-3 has-text-centered">Video Demo</h2>
+    <video id="dollyzoom" 
+           autoplay controls muted loop playsinline
+           style="width: 100%; max-width: 800px; border-radius: 12px;">
+      <source src="./static/videos/demo_new.mp4"
+              type="video/mp4">
+    </video>
+  </div>
+</div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Traditional photographic image editing typically requires users to possess sufficient aesthetic understanding to provide appropriate instructions for adjusting image quality and camera parameters. 
+            However, this paradigm relies on explicit human instruction of aesthetic intent, which is often ambiguous, incomplete, or inaccessible to non-expert users. 
+            Besides, recent editing models mostly rely on user-provided instructions, while lacking the capability to understand aesthetic deficiencies and reason about improvement strategies. 
+            In this work, we propose SmartPhotoCrafter, an automatic photographic image editing method which formulates image editing as a tightly coupled reasoning-to-generation process. 
+            The proposed model first performs image quality comprehension and identifies deficiencies by the Image Critic module, and then the Photographic Artist module realizes targeted edits to enhance image appeal, eliminating the need for explicit human instructions. 
+            A multi-stage training pipeline is adopted: 
+            (i) Foundation pretraining to establish aesthetic understanding and editing capabilities, (ii) Adaptation with reasoning-guided multi-edit supervision to incorporate rich semantic guidance, and (iii) Coordinated reasoning-to-generation reinforcement learning to jointly optimize reasoning and generation. During training, SmartPhotoCrafter emphasizes photo-realistic image generation, while supporting both image restoration and retouching with consistent adherence to color- and tone-related semantics.
+            We also construct a stage-specific dataset, which progressively builds reasoning and controllable generation, effective cross-module collaboration, and ultimately high-quality photographic enhancement. 
+            Experiments demonstrate that SmartPhotoCrafter outperforms existing generative models on the task of automatic photographic enhancement, achieving photo-realistic results while exhibiting higher tonal sensitivity to retouching instructions. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+    
+        <!-- 图片指令 -->
+        <img src="./static/images/model/model.png" alt="Description of image" style="max-width: 100%; height: auto;">
+    
+        <!-- p标签指令 -->
+        <div class="content has-text-justified">
+        <p>
+          Coordinated reasoning-to-generation reinforcement learning framework of SmartPhotoCrafter.
+          A unified optimization paradigm is employed to jointly enhance the Image Critic and Photographic Artist,
+          enabling photographic-aware reasoning and image enhancement.
+        </p>
+      </div>
+    
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div style="text-align: center;">
+      <h2 class="title is-3">Experiments</h2>
+      <br>
+  </div>
+
+  <!-- 图片指令 -->
+  <img src="./static/images/result/vis_multi_ins.jpg" alt="Description of image" style="max-width: 100%; height: auto;">
+  <div class="content has-text-justified">
+    <p>
+      Examples showcase the cross-attribute enhancement power on the real-world dataset, illustrating the instruction-following capability and generalization ability of SmartPhotoCrafter.
+    </p>
+  </div>
+    
+   
+
+    
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{
+      
+    }</code></pre> 
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
